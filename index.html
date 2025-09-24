@@ -14,6 +14,9 @@
             background: linear-gradient(to right, #e5e7eb, #f3f4f6);
         }
         .content-box {
+            /* * CORRECCIÓN FINAL V2: Se utiliza la ruta relativa más simple posible,
+             * ya que ambos archivos están en la misma carpeta.
+            */
             background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('background.png');
             background-size: cover;
             background-position: center;
@@ -28,15 +31,12 @@
     </style>
 </head>
 <body class="text-gray-800 flex items-center justify-center h-screen p-4">
-    <!-- El contenedor principal sigue centrando el bloque -->
-    <div class="max-w-3xl mx-auto">
-        <!-- Se ha modificado el padding y la alineación del texto a la izquierda -->
-        <div class="content-box p-12 text-left rounded-2xl shadow-2xl">
+    <div class="max-w-3xl mx-auto text-center">
+        <div class="content-box p-10 rounded-2xl shadow-2xl">
             <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-4">
                 Análisis de Rendimiento de Campañas
             </h1>
-            <!-- Se eliminó mx-auto para que el párrafo se alinee a la izquierda -->
-            <p class="text-lg text-gray-200 mb-8 max-w-xl">
+            <p class="text-lg text-gray-200 mb-8 max-w-xl mx-auto">
                 Una visualización interactiva del proceso de datos desde META hasta AgendaPro, culminando en un dashboard de resultados en tiempo real.
             </p>
             <a href="dashboard.html" 
@@ -44,7 +44,7 @@
                 Ver Dashboard
             </a>
         </div>
-        <footer class="mt-10 text-gray-500 text-sm text-center">
+        <footer class="mt-10 text-gray-500 text-sm">
             <p>&copy; 2024 - Proyecto de Integración de Datos</p>
         </footer>
     </div>
