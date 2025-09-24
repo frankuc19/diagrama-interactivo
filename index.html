@@ -14,10 +14,10 @@
             background: linear-gradient(to right, #e5e7eb, #f3f4f6);
         }
         .content-box {
-            /* * CORRECCIÓN FINAL V2: Se utiliza la ruta relativa más simple posible,
-             * ya que ambos archivos están en la misma carpeta.
+            /* * CORRECCIÓN FINAL: Se eliminó la carpeta '/images' de la ruta,
+             * ya que el archivo está en la raíz del repositorio.
             */
-            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('background.png');
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/diagrama-interactivo/background.png');
             background-size: cover;
             background-position: center;
         }
@@ -50,4 +50,3 @@
     </div>
 </body>
 </html>
-
