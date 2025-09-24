@@ -14,9 +14,10 @@
             background: linear-gradient(to right, #e5e7eb, #f3f4f6);
         }
         .content-box {
-            /* Imagen de fondo ahora carga desde tu carpeta local "images" */
-            /* Asegúrate de que el archivo 'background.png' esté dentro de una carpeta llamada 'images' */
-            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('images/background.png');
+            /* * CORRECCIÓN FINAL: Se eliminó la carpeta '/images' de la ruta,
+             * ya que el archivo está en la raíz del repositorio.
+            */
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/diagrama-interactivo/background.png');
             background-size: cover;
             background-position: center;
         }
