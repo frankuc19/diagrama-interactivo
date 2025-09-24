@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Diagrama Interactivo del Proceso con IA</title>
+    <title>Diagrama Interactivo y Dashboard</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
@@ -18,14 +18,12 @@
             transform: translateY(-5px);
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
         }
-        /* Styles for modals */
         .modal {
             transition: opacity 0.3s ease;
         }
         .modal-content {
              transition: transform 0.3s ease;
         }
-        /* Spinner for loading state */
         .spinner {
             border: 4px solid rgba(0, 0, 0, .1);
             width: 36px;
@@ -38,68 +36,91 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-        /* Basic prose styling for Gemini output */
         .prose strong { font-weight: 600; }
         .prose ul { list-style-type: disc; padding-left: 1.5rem; }
         .prose li { margin-bottom: 0.5rem; }
+        .looker-container {
+            border: 1px solid #e2e8f0;
+            border-radius: 0.75rem;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        .looker-container iframe {
+            width: 100%;
+            height: 80vh; /* Adjust height as needed */
+            border: none;
+        }
 
     </style>
 </head>
 <body class="bg-gray-100 text-gray-800 p-4 sm:p-8">
     <div class="max-w-7xl mx-auto">
         <header class="text-center mb-12">
-            <h1 class="text-3xl md:text-4xl font-bold text-gray-900">Diagrama de Proceso Interactivo</h1>
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-900">Diagrama de Proceso y Dashboard</h1>
             <p class="mt-2 text-lg text-gray-600">Integración de Datos: META y AgendaPro</p>
-            <p class="mt-4 text-sm text-blue-600 font-semibold">Haz clic en cualquier fase para ver más detalles.</p>
-            <!-- ✨ New Gemini Feature Button -->
-            <button id="optimize-process-btn" class="mt-6 bg-indigo-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-indigo-700 transition duration-300 shadow-lg flex items-center justify-center mx-auto gap-2">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c.3 0 .5.1.8.4l1.3 2.1c.2.3.5.5.8.6l2.3.4c.6.1.9.8.5 1.2l-1.8 1.5c-.3.2-.4.6-.3.9l.5 2.3c.1.6-.5 1-1.1.7l-2-1.2c-.3-.2-.7-.2-1 0l-2 1.2c-.6.3-1.2-.1-1.1-.7l.5-2.3c.1-.3 0-.7-.3-.9l-1.8-1.5c-.4-.4-.1-1.1.5-1.2l2.3-.4c.3 0 .6-.2.8-.6l1.3-2.1c.3-.3.5-.4.8-.4z"/><path d="M19 12c.3 0 .5.1.8.4l1.3 2.1c.2.3.5.5.8.6l2.3.4c.6.1.9.8.5 1.2l-1.8 1.5c-.3.2-.4.6-.3.9l.5 2.3c.1.6-.5 1-1.1.7l-2-1.2c-.3-.2-.7-.2-1 0l-2 1.2c-.6.3-1.2-.1-1.1-.7l.5-2.3c.1-.3 0-.7-.3-.9l-1.8-1.5c-.4-.4-.1-1.1.5-1.2l2.3-.4c.3 0 .6-.2.8-.6l1.3-2.1c.3-.3.5-.4.8-.4z"/><path d="M5 12c.3 0 .5.1.8.4l1.3 2.1c.2.3.5.5.8.6l2.3.4c.6.1.9.8.5 1.2l-1.8 1.5c-.3.2-.4.6-.3.9l.5 2.3c.1.6-.5 1-1.1.7l-2-1.2c-.3-.2-.7-.2-1 0l-2 1.2c-.6.3-1.2-.1-1.1-.7l.5-2.3c.1-.3 0-.7-.3-.9l-1.8-1.5c-.4-.4-.1-1.1.5-1.2l2.3-.4c.3 0 .6-.2.8-.6l1.3-2.1c.3-.3.5-.4.8-.4z"/></svg>
-                Optimizar Proceso con IA
-            </button>
         </header>
 
         <!-- Diagram Container -->
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-8 items-start">
+        <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">Diagrama del Proceso Interactivo</h2>
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8 items-start mb-16">
+            <!-- Phase 1 to 4 code is the same... -->
             <!-- Phase 1: META Extraction -->
             <div class="flex flex-col items-center text-center">
-                <h2 class="text-xl font-bold mb-4 text-gray-700">Fase 1: META</h2>
+                <h3 class="text-xl font-bold mb-4 text-gray-700">Fase 1: META</h3>
                 <div id="phase1" class="process-step bg-white p-6 rounded-xl shadow-lg w-full border-l-4 border-blue-600">
-                     <div class="text-blue-600 mb-3"><svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.657 7.343A8 8 0 0117.657 18.657z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.879 16.121A3 3 0 1014.12 11.88l-4.242 4.242z" /></svg></div>
-                    <h3 class="font-semibold text-lg">Extracción de Datos</h3>
+                     <div class="text-blue-600 mb-3"><svg xmlns="http://www.w.org/2000/svg" class="h-12 w-12 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.657 7.343A8 8 0 0117.657 18.657z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.879 16.121A3 3 0 1014.12 11.88l-4.242 4.242z" /></svg></div>
+                    <h4 class="font-semibold text-lg">Extracción de Datos</h4>
                     <p class="text-sm text-gray-500 mt-1">Conexión a la API Graph para obtener datos de campañas en JSON.</p>
                 </div>
             </div>
             <!-- Phase 2: META Storage -->
             <div class="flex flex-col items-center text-center">
-                <h2 class="text-xl font-bold mb-4 text-gray-700">Fase 2: Hojas de Cálculo</h2>
+                <h3 class="text-xl font-bold mb-4 text-gray-700">Fase 2: Hojas de Cálculo</h3>
                  <div id="phase2" class="process-step bg-white p-6 rounded-xl shadow-lg w-full border-l-4 border-green-500">
-                    <div class="text-green-500 mb-3"><svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V7a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg></div>
-                    <h3 class="font-semibold text-lg">Almacenamiento META</h3>
+                    <div class="text-green-500 mb-3"><svg xmlns="http://www.w.org/2000/svg" class="h-12 w-12 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V7a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg></div>
+                    <h4 class="font-semibold text-lg">Almacenamiento META</h4>
                     <p class="text-sm text-gray-500 mt-1">Organización de datos en "Campañas" y "Clientes Potenciales".</p>
                 </div>
             </div>
             <!-- Phase 3: AgendaPro Extraction -->
             <div class="flex flex-col items-center text-center">
-                <h2 class="text-xl font-bold mb-4 text-gray-700">Fase 3: AgendaPro</h2>
+                <h3 class="text-xl font-bold mb-4 text-gray-700">Fase 3: AgendaPro</h3>
                 <div id="phase3" class="process-step bg-white p-6 rounded-xl shadow-lg w-full border-l-4 border-yellow-500">
                     <div class="text-yellow-500 mb-3"><svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 21h7a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v11m0 5l4.879-4.879m0 0a3 3 0 104.243-4.242 3 3 0 00-4.243 4.242z" /></svg></div>
-                    <h3 class="font-semibold text-lg">Extracción de Datos</h3>
+                    <h4 class="font-semibold text-lg">Extracción de Datos</h4>
                     <p class="text-sm text-gray-500 mt-1">Script para obtener datos de conductores y guardarlos en una hoja.</p>
                 </div>
             </div>
             <!-- Phase 4: Analysis -->
             <div class="flex flex-col items-center text-center">
-                 <h2 class="text-xl font-bold mb-4 text-gray-700">Fase 4: Looker</h2>
+                 <h3 class="text-xl font-bold mb-4 text-gray-700">Fase 4: Looker</h3>
                 <div id="phase4" class="process-step bg-white p-6 rounded-xl shadow-lg w-full border-l-4 border-purple-500">
-                    <div class="text-purple-500 mb-3"><svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z" /></svg></div>
-                    <h3 class="font-semibold text-lg">Análisis y Visualización</h3>
+                    <div class="text-purple-500 mb-3"><svg xmlns="http://www.w.org/2000/svg" class="h-12 w-12 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z" /></svg></div>
+                    <h4 class="font-semibold text-lg">Análisis y Visualización</h4>
                     <p class="text-sm text-gray-500 mt-1">Conexión de las fuentes de datos para crear el dashboard final.</p>
                 </div>
             </div>
         </div>
+
+        <!-- AI Button -->
+        <div class="text-center mb-16">
+             <button id="optimize-process-btn" class="bg-indigo-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-indigo-700 transition duration-300 shadow-lg flex items-center justify-center mx-auto gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c.3 0 .5.1.8.4l1.3 2.1c.2.3.5.5.8.6l2.3.4c.6.1.9.8.5 1.2l-1.8 1.5c-.3.2-.4.6-.3.9l.5 2.3c.1.6-.5 1-1.1.7l-2-1.2c-.3-.2-.7-.2-1 0l-2 1.2c-.6.3-1.2-.1-1.1-.7l.5-2.3c.1-.3 0-.7-.3-.9l-1.8-1.5c-.4-.4-.1-1.1.5-1.2l2.3-.4c.3 0 .6-.2.8-.6l1.3-2.1c.3-.3.5-.4.8-.4z"/><path d="M19 12c.3 0 .5.1.8.4l1.3 2.1c.2.3.5.5.8.6l2.3.4c.6.1.9.8.5 1.2l-1.8 1.5c-.3.2-.4.6-.3.9l.5 2.3c.1.6-.5 1-1.1.7l-2-1.2c-.3-.2-.7-.2-1 0l-2 1.2c-.6.3-1.2-.1-1.1-.7l.5-2.3c.1-.3 0-.7-.3-.9l-1.8-1.5c-.4-.4-.1-1.1.5-1.2l2.3-.4c.3 0 .6-.2.8-.6l1.3-2.1c.3-.3.5-.4.8-.4z"/><path d="M5 12c.3 0 .5.1.8.4l1.3 2.1c.2.3.5.5.8.6l2.3.4c.6.1.9.8.5 1.2l-1.8 1.5c-.3.2-.4.6-.3.9l.5 2.3c.1.6-.5 1-1.1.7l-2-1.2c-.3-.2-.7-.2-1 0l-2 1.2c-.6.3-1.2-.1-1.1-.7l.5-2.3c.1-.3 0-.7-.3-.9l-1.8-1.5c-.4-.4-.1-1.1.5-1.2l2.3-.4c.3 0 .6-.2.8-.6l1.3-2.1c.3-.3.5-.4.8-.4z"/></svg>
+                Optimizar Proceso con IA
+            </button>
+        </div>
+
+        <!-- NEW: Looker Studio Dashboard Section -->
+        <section class="bg-white p-4 sm:p-6 rounded-xl shadow-lg">
+             <h2 class="text-2xl font-bold text-gray-800 mb-4 text-center">Dashboard de Resultados</h2>
+             <div class="looker-container">
+                <iframe src="https://lookerstudio.google.com/embed/reporting/949631c2-0ebe-4edb-969d-2e95cbae7239/page/p_5s5z7qebwd" frameborder="0" style="border:0" allowfullscreen sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
+             </div>
+        </section>
+
     </div>
 
-    <!-- Modal for phase details -->
+    <!-- Modals (no changes here) -->
     <div id="modal" class="modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 opacity-0 pointer-events-none">
         <div id="modal-content" class="modal-content bg-white rounded-lg shadow-2xl w-full max-w-2xl transform scale-95">
             <div class="flex justify-between items-center p-5 border-b">
@@ -109,8 +130,6 @@
             <div id="modal-body" class="p-6 text-gray-700 leading-relaxed"></div>
         </div>
     </div>
-
-    <!-- ✨ New Modal for Gemini API Response -->
     <div id="gemini-modal" class="modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 opacity-0 pointer-events-none">
         <div id="gemini-modal-content" class="modal-content bg-white rounded-lg shadow-2xl w-full max-w-3xl transform scale-95 flex flex-col max-h-[90vh]">
             <div class="flex justify-between items-center p-5 border-b bg-gray-50 rounded-t-lg">
@@ -126,6 +145,7 @@
     </div>
 
     <script>
+        // Javascript remains the same...
         const phaseDetails = {
             phase1: {
                 title: "Fase 1: Extracción de Datos de META",
@@ -264,4 +284,5 @@
     </script>
 </body>
 </html>
+
 
